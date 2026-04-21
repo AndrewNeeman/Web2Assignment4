@@ -1,10 +1,15 @@
 .footer {
-  background-color: #394e40;
-  padding: 10px;
-  border-top: 1px solid #ddd;
+  background-color: var(--header-footer-bg);
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 2px solid #2a3a2d;
 }
 
 .footer h5 {
   color: white;
-  font-weight: bold;
+  margin: 0;
+  font-weight: 400;
+  font-size: 1rem;
 }

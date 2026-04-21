@@ -1,19 +1,10 @@
-import { type JSX, useState } from "react";
+import { type JSX } from "react";
 import "./Home.css";
 
 export default function Home(): JSX.Element {
-  const [searchTerm, setSearchTerm] = useState("");
-
   return (
-    <main className="home-content">
-      <input
-        type="text"
-        placeholder="Search a piece of clothing..."
-        className="searchbar"
-        value={searchTerm}
-        onChange={(search) => setSearchTerm(search.target.value)}
-      />
-      <p>Search result: {searchTerm}</p>
-    </main>
+    <div className="home-container">
+      <h1 className="welcome-text">Welcome to our Wardrobe App!</h1>
+    </div>
   );
 }

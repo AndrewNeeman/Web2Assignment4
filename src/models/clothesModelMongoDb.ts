@@ -6,7 +6,7 @@ import pino from "pino";
 
 let client: MongoClient | undefined;
 let clothingsCollection: Collection<clothingPiece> | undefined;
-let dbName: string = "pokemon_db";
+let dbName: string = "wardrobe_db";
 
 const logger = pino();
 
@@ -220,12 +220,12 @@ async function deleteClothing(type: string): Promise<boolean> {
  * Connects to the MongoDB database and ensures the required collection exists.
  * 
  * @async
- * @param {string} [dbNameParam="pokemon_db"] - The name of the database to connect to.
+ * @param {string} [dbNameParam="wardrobe_db"] - The name of the database to connect to.
  * @param {boolean} [resetFlag=false] - If true, clears all existing data in the collection.
  * @param {string} [urlParam] - Optional MongoDB connection string. Defaults to environment variables if not provided.
  * @returns {Promise<void>}
  */
-async function initialize(dbNameParam: string = "pokemon_db", resetFlag: boolean = false, urlParam?: string): Promise<void> {
+async function initialize(dbNameParam: string = "wardrobe_db", resetFlag: boolean = false, urlParam?: string): Promise<void> {
     try {
         dbName = dbNameParam;
         const url = urlParam ?? `${process.env.URL_PRE}${process.env.MONGODB_PWD}${process.env.URL_POST}`;
@@ -236,14 +236,14 @@ async function initialize(dbNameParam: string = "pokemon_db", resetFlag: boolean
         const db = client.db(dbName);
 
         // ensure collection exists
-        const exists = await db.listCollections({ name: "pokemons" }).toArray();
+        const exists = await db.listCollections({ name: "clothing" }).toArray();
         if (exists.length === 0) {
-            await db.createCollection("pokemons", {
+            await db.createCollection("clothing", {
                 collation: { locale: "en", strength: 1 },
             });
         }
 
-        clothingsCollection = db.collection<clothingPiece>("pokemons");
+        clothingsCollection = db.collection<clothingPiece>("clothing");
 
         if (resetFlag) {
             await clothingsCollection.deleteMany({});
