@@ -8,9 +8,12 @@ const router = express.Router();
 const routeRoot = "/clothing";
 
 /**
- * Adds a clothing piece to the database
- * @param request The express request object
- * @param response The express response object
+ * Adds a new clothing piece to the database.
+ * 
+ * @async
+ * @param {Request} request - The Express request object, containing type, colour, and size in the body.
+ * @param {Response} response - The Express response object used to send the status and result message.
+ * @returns {Promise<void>}
  */
 router.post("/", addClothing);
 async function addClothing(request: Request, response: Response): Promise<void> {
@@ -25,9 +28,12 @@ async function addClothing(request: Request, response: Response): Promise<void> 
 }
 
 /**
- * Gets a single clothing piece from the database
- * @param request The express request object
- * @param response The express response object
+ * Retrieves a single clothing piece from the database based on the 'type' query parameter.
+ * 
+ * @async
+ * @param {Request} request - The Express request object, containing 'type' in the query string.
+ * @param {Response} response - The Express response object used to send the clothing detail or an error.
+ * @returns {Promise<void>}
  */
 router.get("/one", getOneClothingPiece);
 async function getOneClothingPiece(request: Request, response: Response) {
@@ -42,9 +48,12 @@ async function getOneClothingPiece(request: Request, response: Response) {
 }
 
 /**
- * Gets all clothing pieces from the database
- * @param request The express request object
- * @param response The express response object
+ * Retrieves all clothing pieces stored in the database.
+ * 
+ * @async
+ * @param {Request} request - The Express request object.
+ * @param {Response} response - The Express response object used to send the array of clothing pieces.
+ * @returns {Promise<void>}
  */
 router.get("/all", getAllClothingPieces);
 async function getAllClothingPieces(request: Request, response: Response) {
@@ -58,9 +67,12 @@ async function getAllClothingPieces(request: Request, response: Response) {
 }
 
 /**
- * Updates a clothing piece in the database
- * @param request The express request object
- * @param response The express response object
+ * Updates an existing clothing piece in the database with new values.
+ * 
+ * @async
+ * @param {Request} request - The Express request object, containing type, newType, newColour, and newSize in the body.
+ * @param {Response} response - The Express response object used to send the update confirmation.
+ * @returns {Promise<void>}
  */
 router.put("/", updateClothingPiece);
 async function updateClothingPiece(request: Request, response: Response) {
@@ -76,9 +88,12 @@ async function updateClothingPiece(request: Request, response: Response) {
 }
 
 /**
- * Deletes a clothing piece from the database
- * @param request The express request object
- * @param response The express response object
+ * Deletes a clothing piece from the database based on the 'type' query parameter.
+ * 
+ * @async
+ * @param {Request} request - The Express request object, containing 'type' in the query string.
+ * @param {Response} response - The Express response object used to send the deletion confirmation.
+ * @returns {Promise<void>}
  */
 router.delete("/", deleteClothing);
 async function deleteClothing(request: Request, response: Response) {
@@ -93,7 +108,10 @@ async function deleteClothing(request: Request, response: Response) {
 }
 
 /**
- * Utility function to handle errors consistently
+ * Handles errors thrown by the model or other internal logic, sending appropriate HTTP status codes and messages.
+ * 
+ * @param {any} error - The error object to be handled.
+ * @param {Response} response - The Express response object used to send the error status.
  */
 function handleError(error: any, response: Response) {
     if (error instanceof InvalidInputError) {

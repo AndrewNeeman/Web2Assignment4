@@ -23,6 +23,13 @@ app.get("/", (request, response) => {
 });
 
 // Initialize Database and Start Server
+/**
+ * Initializes the database connection and starts the Express server.
+ * 
+ * @async
+ * @returns {Promise<void>} A promise that resolves when the server has started.
+ * @throws Will exit the process with code 1 if database initialization fails.
+ */
 async function startServer() {
     try {
         await model.initialize();
