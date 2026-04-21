@@ -1,0 +1,16 @@
+.navbar {
+  background-color: #3f6b4d;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-icon {
+  border-radius: 5px;
+  background-color: #2f4f3f;
+  border: black 5px solid;
+  padding: 10px;
+  margin: 5px;
+  text-decoration: none;
+}
